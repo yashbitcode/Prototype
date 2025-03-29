@@ -1,11 +1,8 @@
-import { useSelector } from "react-redux";
 import LChart from "./LineChart";
 import Summary from "./Summary";
 
-const Result = () => {
-    const summary = useSelector((store) => store.current.summary);
-    const chart = useSelector((store) => store.current.chart);
-
+const Result = ({summary, chart}) => {
+    console.log(chart)
     return (
         <div className="w-full bg-white mt-[1rem] rounded-[5px] p-[1rem]">
             <Summary summary={summary} />

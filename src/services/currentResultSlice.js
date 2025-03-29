@@ -14,9 +14,14 @@ const currentResultSlice = createSlice({
             state.summary = summary;
             state.chart = chartdata;
             state.error = error;
+        },
+        clearCurrentState: (state) => {
+            state.summary = null;
+            state.chart = null;
+            state.error = null;
         }
     }
 });
 
-export const {addCurrentData} = currentResultSlice.actions;
+export const {addCurrentData, clearCurrentState} = currentResultSlice.actions;
 export default currentResultSlice.reducer;

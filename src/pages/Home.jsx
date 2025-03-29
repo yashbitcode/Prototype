@@ -1,60 +1,11 @@
 import { Button, Skeleton, TextField } from "@mui/material";
-import { useEffect, useState } from "react";
 import SearchSuggestions from "../components/SearchSuggestions";
-import getRes from "../services/geminiSuggestions";
-import { useDispatch, useSelector } from "react-redux";
-import { addSugg } from "../services/suggestionSlice";
-import getProcessedData from "../services/geminiData";
-import { addCurrentData } from "../services/currentResultSlice";
 import ErrorState from "../components/ErrorState";
 import Result from "../components/Result";
-import { addHistory } from "../services/historySlice";
+import useHomeData from "../hooks/useHomeData";
 
 const Home = () => {
-    const [searchInp, setSearchInp] = useState("");
-    const [sugg, setSugg] = useState([]);
-    const [loading, setLoading] = useState(false);
-
-    const suggCache = useSelector((store) => store.sugg.suggestionCache);
-    const error = useSelector((store) => store.current.error);
-
-    const dispatch = useDispatch();
-
-    const fetchSuggestion = async () => {
-        if(searchInp) {
-            if(suggCache[searchInp]) {
-                setSugg(suggCache[searchInp]);
-                return;
-            }
-
-            const data = await getRes(searchInp);
-            setSugg(data);
-
-            dispatch(addSugg({searchQuery: searchInp, sugg: data}));
-        }
-    };
-
-    const handleQueryProcessing = async () => {
-        if(searchInp) {
-            setLoading(true)
-            const data = await getProcessedData(searchInp);
-            console.log(data);
-
-            dispatch(addCurrentData(data));
-            dispatch(addHistory({searchQuery: searchInp, result: data}));
-            setLoading(false);
-        }
-    };
-
-    const handleBlur = () => setTimeout(() => setSugg([]), 300);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            fetchSuggestion()
-        }, 300);
-
-        return () => clearTimeout(timer);
-    }, [searchInp]);
+    const [searchInp, setSearchInp, sugg, loading, fetchSuggestion, handleQueryProcessing, handleBlur, summary, chart, error] = useHomeData();
 
     return (
         <div className="w-full">
@@ -67,7 +18,7 @@ const Home = () => {
                 <Button variant="contained" className="w-[120px]" onClick={handleQueryProcessing}>Search</Button>
             </div>
             {
-                loading ? <Skeleton variant="rounded" className="w-full mt-[1rem] h-[400px]" height={400} /> : (!error && error !== null) ? <Result /> : (error !== null) && <ErrorState />
+                loading ? <Skeleton variant="rounded" className="w-full mt-[1rem] h-[400px]" height={400} /> : (!error && error !== null) ? <Result summary={summary} chart={chart} /> : (error !== null) && <ErrorState />
             }
         </div>
     );

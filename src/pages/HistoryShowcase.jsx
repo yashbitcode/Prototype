@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux"
 import NotFound from "../components/NotFound";
+import { Link } from "react-router";
 
 const HistoryShowcase = () => {
     const history = useSelector((store) => store.history.history);
@@ -13,7 +14,9 @@ const HistoryShowcase = () => {
                         <ul className="flex flex-col gap-[10px]">
                             {
                                 history?.map((el, idx) => (
-                                    <li className="text-xl bg-slate-300 py-[5px] px-[12px] rounded-[5px]">{idx + 1}. {el.searchQuery}</li>
+                                   <Link to={"/history/" + (idx + 1)}>
+                                        <li className="text-xl bg-slate-300 py-[5px] px-[12px] rounded-[5px]">{idx + 1}. {el.searchQuery}</li>
+                                   </Link>
                                 ))
                             }
                         </ul>

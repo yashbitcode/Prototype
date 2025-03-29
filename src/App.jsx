@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import appStore from "./services/appStore";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router";
 import HistoryShowcase from "./pages/HistoryShowcase";
+import SpecificHistory from "./pages/SpecificHistory";
 
 const AppLayout = () => {
 	return (
@@ -26,6 +27,10 @@ const appRoutes = createBrowserRouter([
 			{
 				path: "/history",
 				element: <HistoryShowcase />
+			},
+			{
+				path: "/history/:historyId",
+				element: <SpecificHistory />
 			},
 		]
 	}
