@@ -8,7 +8,7 @@ import SpecificHistory from "./pages/SpecificHistory";
 
 const AppLayout = () => {
 	return (
-		<div className="bg-[#e9eef2] w-full min-h-[100vh] px-[1rem] py-[1.5rem] flex gap-[2rem]">
+		<div className="bg-[#e9eef2] w-full min-h-[100vh] px-[1rem] py-[1.5rem] flex gap-[2rem] max-sm:flex-col">
 			<Header />
 			<Outlet />
 		</div>

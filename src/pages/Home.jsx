@@ -9,7 +9,7 @@ const Home = () => {
 
     return (
         <div className="w-full">
-            <div className="w-full max-w-[550px] flex gap-[13px]">
+            <div className="w-full min-sm:max-w-[550px] flex gap-[13px]">
                 <div className="w-full relative">
                     <TextField label="User Search Query" variant="outlined" className="w-full" size="small" value={searchInp} onChange={(e) => setSearchInp(e.target.value)} onFocus={fetchSuggestion} onBlur={handleBlur} />
                     

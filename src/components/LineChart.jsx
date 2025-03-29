@@ -2,7 +2,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 
 const LChart = ({chartData}) => {
     return (
-        <div className="w-full max-w-[700px] h-[300px]"> 
+        <div className="w-full h-[300px] max-sm2:h-[200px]"> 
 
 			<ResponsiveContainer width="100%" height="100%">
 				<LineChart

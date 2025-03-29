@@ -14,7 +14,7 @@ const HistoryShowcase = () => {
                         <ul className="flex flex-col gap-[10px]">
                             {
                                 history?.map((el, idx) => (
-                                   <Link to={"/history/" + (idx + 1)}>
+                                   <Link to={"/history/" + (idx + 1)} key={el + idx}>
                                         <li className="text-xl bg-slate-300 py-[5px] px-[12px] rounded-[5px]">{idx + 1}. {el.searchQuery}</li>
                                    </Link>
                                 ))

@@ -34,7 +34,6 @@ const useHomeData = () => {
         if(searchInp) {
             setLoading(true)
             const data = await getProcessedData(searchInp);
-            console.log(data);
 
             dispatch(addCurrentData(data));
             dispatch(addHistory({searchQuery: searchInp, result: data}));
