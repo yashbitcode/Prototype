@@ -7,10 +7,12 @@ const Header = () => {
     const navOptions = [
         {
             name: "Home",
+            navigation: "/",
             icon: HomeIcon
         },
         {
             name: "History",
+            navigation: "/history",
             icon: WorkHistoryIcon
         },
     ];
@@ -24,7 +26,7 @@ const Header = () => {
             <div className="mt-[3rem]">
                 <ul className="flex flex-col gap-[1rem]">
                     {
-                        navOptions.map((el) => <NavItem key={el.name} name={el.name} Icon={el.icon} /> )
+                        navOptions.map((el) => <NavItem key={el.name} name={el.name} Icon={el.icon} nav={el.navigation} />)
                     }
                 </ul>
             </div>
